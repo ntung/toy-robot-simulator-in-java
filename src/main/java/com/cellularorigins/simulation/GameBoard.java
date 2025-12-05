@@ -31,10 +31,7 @@ public class GameBoard {
     public boolean validatePosition(Position position) {
         int xCoordinate = position.getX();
         int yCoordinate = position.getY();
-        if (xCoordinate > rows || xCoordinate < 0 ||
-                yCoordinate > cols || yCoordinate < 0) {
-            return false;
-        }
-        return true;
+        return xCoordinate <= rows && xCoordinate >= 0 &&
+                yCoordinate <= cols && yCoordinate >= 0;
     }
 }
