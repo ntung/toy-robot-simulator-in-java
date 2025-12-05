@@ -29,6 +29,19 @@
             <version>5.10.3</version>
             <scope>test</scope>
         </dependency>
+        <!-- log4j2 -->
+        <!-- Mandatory dependency -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <!-- Imported dependencies -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
     </dependencies>
     <build>
 

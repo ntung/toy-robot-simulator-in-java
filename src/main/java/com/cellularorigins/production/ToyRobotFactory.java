@@ -10,11 +10,17 @@ import com.cellularorigins.simulation.Robot;
 import com.cellularorigins.simulation.Simulator;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
 @Getter @Setter
 public class ToyRobotFactory {
+    /**
+     * Declares the {@link Logger} instance for logging
+     */
+    private static final Logger LOGGER = LogManager.getLogger(ToyRobotFactory.class);
 
     public static void createToyRobot() {
         GameBoard gameBoard = new GameBoard(5, 5);
@@ -45,8 +51,8 @@ public class ToyRobotFactory {
                         return "Invalid command";
                     }
                     boolean result = placeCommand(simulator, commandArgs[1]);
-                    System.out.println("Place command " + command.getDescription() + " " + (result ? "successfully" :
-                            "unsuccessfully"));
+                    LOGGER.info("Place command {} {} {}", command.getDescription(), commandArgs[1], (result ?
+                            "successfully" : "unsuccessfully"));
                 }  catch (IllegalActionException e) {
                     throw new IllegalActionException(e.getMessage());
                 }

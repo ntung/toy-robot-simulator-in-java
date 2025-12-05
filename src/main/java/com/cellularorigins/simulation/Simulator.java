@@ -8,10 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class Simulator {
+    private final Logger LOGGER = LogManager.getLogger(Simulator.class);
+
     private GameBoard gameboard;
     private Robot robot;
 
@@ -43,10 +47,11 @@ public class Simulator {
         switch (command) {
             case MOVE -> {
                 if (canMove()) {
-                    System.out.println("Moving Robot");
+                    LOGGER.info("Moving Robot");
                     robot.move();
                 } else {
-                    System.out.println("Robot cannot move");
+                    robot.report();
+                    LOGGER.info("Robot cannot move");
                 }
             }
             case LEFT -> robot.left();
