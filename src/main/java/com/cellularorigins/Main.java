@@ -1,24 +1,45 @@
 package com.cellularorigins;
 
 import com.cellularorigins.production.ToyRobotFactory;
+import com.cellularorigins.utils.ArgumentHandler;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
         System.out.print("Welcome to Cellular Origins!\n");
-        try  {
-            if (args.length != 1 || args[0].isEmpty()) {
-                System.out.println("Usage: java -jar ToyRobotSimulatorV1.0-SNAPSHOT-jar-with-dependencies.jar <file of commands>");
-            } else {
-                System.out.println("Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; " +
-                        "RIGHT; REPORT. Type `quit` to exit the game.");
-                ToyRobotFactory.createToyRobot();
+        Options options = ArgumentHandler.createOptions();
+        try {
+            if (args.length == 0) {
+                ArgumentHandler.help(options);
+                System.exit(0);
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            CommandLine cmd = ArgumentHandler.getCliParser().parse(options, args);
+            if (cmd.hasOption("f")) {
+                String filePath = cmd.getOptionValue("f");
+                LOGGER.info("Parsing and running the toy robot simulator from the input file: {}", filePath);
+            } else if (cmd.hasOption("i")) {
+                LOGGER.info("Interactive mode enabled.");
+                ToyRobotFactory.usage();
+                ToyRobotFactory.createToyRobot();
+            } else if (cmd.hasOption("h")) {
+                ArgumentHandler.help(options);
+                System.exit(0);
+            } else {
+                System.out.println("Wrong syntax! Bye!");
+                LOGGER.debug("Wrong syntax! Bye! Exited!");
+                System.exit(0);
+            }
+        } catch (ParseException e) {
+            LOGGER.debug("An error happened: {}", e.getMessage());
+            ArgumentHandler.help(options);
+            System.exit(0);
         }
     }
 }

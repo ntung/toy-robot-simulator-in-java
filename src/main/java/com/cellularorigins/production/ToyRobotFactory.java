@@ -22,6 +22,11 @@ public class ToyRobotFactory {
      */
     private static final Logger LOGGER = LogManager.getLogger(ToyRobotFactory.class);
 
+    public static void usage() {
+        System.out.println("Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; " +
+                "RIGHT; REPORT. Type `quit` to exit the game.");
+    }
+
     public static void createToyRobot() {
         GameBoard gameBoard = new GameBoard(5, 5);
         Position startPosition = new Position(0, 0, Direction.NORTH);
@@ -60,7 +65,7 @@ public class ToyRobotFactory {
                 try {
                     output = simulator.play(command);
                 } catch (InvalidRobotException | IllegalActionException exception) {
-                    System.out.println(exception.getMessage() + ". Try again with the built-in commands!");
+                    System.out.print(exception.getMessage() + ". Try again with the built-in commands!");
                 }
             }
         } catch (IllegalArgumentException ex) {
