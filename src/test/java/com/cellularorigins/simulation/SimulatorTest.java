@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SimulatorTest {
@@ -18,6 +19,8 @@ public class SimulatorTest {
     public void setup() {
         GameBoard gameBoard = new GameBoard(5, 5);
         Robot robot = new Robot();
+        Position position = new Position(0, 0, Direction.NORTH);
+        robot.setPosition(position);
         simulator = new Simulator(gameBoard, robot);
     }
 
@@ -83,12 +86,26 @@ public class SimulatorTest {
         Robot robot = simulator.getRobot();
         robot.setPosition(new Position(0, 0, Direction.NORTH));
         String report = simulator.play(Command.MOVE);
-        Assertions.assertEquals(report, "0, 1, NORTH");
+        Assertions.assertEquals("0, 1, NORTH", report);
         report = simulator.play(Command.LEFT);
-        Assertions.assertEquals(report, "0, 1, WEST");
+        Assertions.assertEquals("0, 1, WEST", report);
         report = simulator.play(Command.RIGHT);
-        Assertions.assertEquals(report, "0, 1, NORTH");
+        Assertions.assertEquals("0, 1, NORTH", report);
         report = simulator.play(Command.RIGHT);
-        Assertions.assertEquals(report, "0, 1, EAST");
+        Assertions.assertEquals("0, 1, EAST", report);
+    }
+
+    @Test
+    public void testCanMoveMethodAtLeftBottomCorner() {
+        Assertions.assertEquals(Direction.NORTH, simulator.getRobot().getPosition().getDirection());
+        Assertions.assertTrue(simulator.canMove());
+    }
+
+    @Test
+    public void testCanMoveMethodAtRightBottomCorner() {
+        Position position = new Position(4, 0, Direction.SOUTH);
+        simulator.getRobot().setPosition(position);
+        Assertions.assertEquals(Direction.SOUTH, simulator.getRobot().getPosition().getDirection());
+        Assertions.assertFalse(simulator.canMove());
     }
 }

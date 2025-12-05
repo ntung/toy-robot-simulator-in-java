@@ -1,15 +1,13 @@
 package com.cellularorigins.core;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * A class representing the robot position.
  */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Position {
     private int x;
     private int y;

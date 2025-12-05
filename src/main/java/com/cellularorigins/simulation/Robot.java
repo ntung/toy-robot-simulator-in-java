@@ -24,6 +24,20 @@ public class Robot {
      * facing.
      */
     public void move() {
+        doMove(position);
+    }
+
+    /**
+     * Tries moving the robot but not commit.
+     *
+     * @param position A {@link Position} representing the location of the robot.
+     * @return the reference of the new position
+     */
+    public Position tryMove(Position position) {
+        return doMove(position);
+    }
+
+    private Position doMove(Position position) {
         if (position.getDirection().equals(Direction.NORTH)) {
             position.updatePosition(0, 1);
         } else if (position.getDirection().equals(Direction.SOUTH)) {
@@ -33,6 +47,7 @@ public class Robot {
         } else if (position.getDirection().equals(Direction.WEST)) {
             position.updatePosition(-1, 0);
         }
+        return position;
     }
 
     /**

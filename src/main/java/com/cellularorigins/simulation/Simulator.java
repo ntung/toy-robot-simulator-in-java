@@ -41,12 +41,40 @@ public class Simulator {
             return report;
         }
         switch (command) {
-            case MOVE -> robot.move();
+            case MOVE -> {
+                if (canMove()) {
+                    System.out.println("Moving Robot");
+                    robot.move();
+                } else {
+                    System.out.println("Robot cannot move");
+                }
+            }
             case LEFT -> robot.left();
             case RIGHT -> robot.right();
             default ->  {}
         }
 
         return robot.report();
+    }
+
+    /**
+     * Verifies the current position of the robot to determine whether its movement is legal or not.
+     * When the robot is positioning at the edges, the movement cannot be performed.
+     * In other words, a valid position should be inside the game board.
+     *
+     * @return true if the next movement is allowed. Otherwise, it returns false.
+     */
+    public boolean canMove() {
+        Position currentPosition = robot.getPosition();
+        Position tempPosition = Position.builder()
+                .x(currentPosition.getX())
+                .y(currentPosition.getY())
+                .direction(currentPosition.getDirection())
+                .build();
+        Position newPosition = robot.tryMove(tempPosition);
+        int x = newPosition.getX(),  y = newPosition.getY();
+        // after moving, the robot is still inside the board
+        return x >= 0 && x <= gameboard.getRows() - 1
+                && y >= 0 && y <= gameboard.getCols() - 1;
     }
 }
