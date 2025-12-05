@@ -1,15 +1,24 @@
 package com.cellularorigins.core;
 
+import lombok.Getter;
+
 /**
  * An enum class representing four universal directions which a robot can move.
  */
+@Getter
 public enum Direction {
     NORTH("NORTH"),
     EAST("EAST"),
     SOUTH("SOUTH"),
     WEST("WEST");
 
-    private String description;
+    /**
+     * -- GETTER --
+     *  This method returns the description of an individual
+     *  instance.
+     *
+     */
+    private final String description;
 
     /**
      * Default constructor
@@ -46,11 +55,4 @@ public enum Direction {
         return values()[resultIndex];
     }
 
-    /**
-     * This method returns the description of an individual {@link Direction} instance.
-     * @return A {@link String} representing the name of the given direction.
-     */
-    public String getDescription() {
-        return description;
-    }
 }

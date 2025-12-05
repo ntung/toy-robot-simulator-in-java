@@ -1,7 +1,11 @@
 package com.cellularorigins.exception;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class InvalidRobotException extends RuntimeException {
-    private String message;
+    private final String message;
 
     public InvalidRobotException(String message) {
         this.message = message;
