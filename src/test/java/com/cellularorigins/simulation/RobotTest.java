@@ -21,6 +21,21 @@ public class RobotTest {
         String expected = "0, 1, NORTH";
         String actual = robot.report();
         Assertions.assertEquals(expected, actual);
+        Position position = new Position(1, 1, Direction.SOUTH);
+        robot.setPosition(position);
+        robot.move();
+        expected = "1, 0, SOUTH";
+        Assertions.assertEquals(expected, robot.report());
+        position = new Position(1, 1, Direction.EAST);
+        robot.setPosition(position);
+        robot.move();
+        expected = "2, 1, EAST";
+        Assertions.assertEquals(expected, robot.report());
+        position = new Position(1, 1, Direction.WEST);
+        robot.setPosition(position);
+        robot.move();
+        expected = "0, 1, WEST";
+        Assertions.assertEquals(expected, robot.report());
     }
 
     @Test

@@ -22,8 +22,8 @@ public class Position {
      * @param y the vertical position
      */
     public void updatePosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x += x;
+        this.y += y;
     }
 
     @Override
