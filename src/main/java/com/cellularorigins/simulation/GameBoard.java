@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * A class representing the game board.
- *
+ * <p>
  * The game board is defined several rows and columns. By default, it is a square table.
  */
 @Getter @Setter

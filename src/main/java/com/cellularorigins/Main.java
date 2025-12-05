@@ -13,8 +13,8 @@ public class Main {
             if (args.length != 1 || args[0].isEmpty()) {
                 System.out.println("Usage: java -jar ToyRobotSimulatorV1.0-SNAPSHOT-jar-with-dependencies.jar <file of commands>");
             } else {
-                System.out.println("Play robot game now! Commands: MOVE X,Y,[NORTH, EAST, SOUTH, WEST]; LEFT; RIGHT; " +
-                        "REPORT. Type quit to exit the game.");
+                System.out.println("Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; " +
+                        "RIGHT; REPORT. Type `quit` to exit the game.");
                 ToyRobotFactory.createToyRobot();
             }
         } catch (Exception e) {
