@@ -10,11 +10,12 @@ public class CommandTest {
     }
 
     @Test
-    public void testExecuteWithDirection() {
-        Assertions.assertEquals(Command.PLACE, Command.PLACE);
-        Assertions.assertEquals(Command.MOVE, Command.MOVE);
-        Assertions.assertEquals(Command.LEFT, Command.LEFT);
-        Assertions.assertEquals(Command.RIGHT, Command.RIGHT);
-        Assertions.assertEquals(Command.REPORT, Command.REPORT);
+    public void testFromMethod() {
+        Assertions.assertEquals(Command.PLACE, Command.from("place"));
+        Assertions.assertEquals(Command.MOVE, Command.from("move"));
+        Assertions.assertEquals(Command.LEFT, Command.from("left"));
+        Assertions.assertEquals(Command.RIGHT, Command.from("right"));
+        Assertions.assertEquals(Command.REPORT, Command.from("report"));
+        Assertions.assertNull(Command.from("unknown"));
     }
 }
