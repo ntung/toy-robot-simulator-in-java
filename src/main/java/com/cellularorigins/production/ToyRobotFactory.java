@@ -12,7 +12,8 @@ import java.util.Scanner;
 /**
  *
  */
-@Getter @Setter
+@Getter
+@Setter
 public class ToyRobotFactory {
     /**
      * Declares the {@link Logger} instance for logging
@@ -21,24 +22,61 @@ public class ToyRobotFactory {
 
     public static void usage() {
         System.out.println("Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; " +
-                "RIGHT; REPORT. Type `quit` to exit the game.");
+                "RIGHT; REPORT. Type `quit` or press `Ctrl+C` to exit the game.");
     }
 
-    public static void createToyRobot() {
-        Simulator simulator = Simulator.createDefaultSimulator();
-        Scanner scanner = new Scanner(System.in);
+    /**
+     * Executes the main application logic, receiving all dependencies externally.
+     * This method contains the core logic that needs testing.
+     * * @param simulator The simulation engine (Injected Dependency)
+     *
+     * @param inputStream  The source of commands (e.g., System.in)
+     * @param outputStream The destination for reports (e.g., System.out)
+     */
+    public static void runToyRobot(
+            Simulator simulator,
+            InputStream inputStream,
+            PrintStream outputStream) {
+
+        Scanner scanner = new Scanner(inputStream);
+
         while (true) {
+            // Check if there is more input to process
+            if (!scanner.hasNextLine()) {
+                break; // Exit if input stream closes or has no more lines
+            }
+
             // receive input
-            String commandLine = scanner.nextLine();
+            String commandLine = scanner.nextLine().trim();
+
             if (commandLine.equalsIgnoreCase("quit")) {
                 LOGGER.info("Quitting...");
                 break;
             }
+
+            // Avoid executing empty lines
+            if (commandLine.isEmpty()) {
+                continue;
+            }
+
             // parse the input and execute the command
             String report = simulator.execute(commandLine);
+
+            // Output to the user and log
+            outputStream.println(report);
             LOGGER.info("Report for the command {}: {}", commandLine, report);
-            System.out.println(report);
             LOGGER.info(report);
         }
+    }
+
+    /**
+     * The original entry point, now responsible only for wiring up the dependencies.
+     */
+    public static void createToyRobot() {
+        // Concrete dependencies are instantiated here (The Composition Root)
+        Simulator simulator = Simulator.createDefaultSimulator();
+
+        // Delegates the actual work to the testable method
+        runToyRobot(simulator, System.in, System.out);
     }
 }

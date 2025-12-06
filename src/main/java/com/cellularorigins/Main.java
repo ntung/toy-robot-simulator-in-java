@@ -14,6 +14,10 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
+        start(args);
+    }
+
+    public static void start(String[] args) {
         System.out.print("Welcome to Cellular Origins!\n");
         Options options = ArgumentHandler.createOptions();
         try {
