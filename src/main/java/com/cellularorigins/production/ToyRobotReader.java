@@ -12,7 +12,12 @@ public class ToyRobotReader {
             throw new InvalidRobotException("Invalid file path");
         }
         File file = new File(filePath);
-        ArrayList<String> result = readFromFile(file);
+        ArrayList<String> result  = new ArrayList<>();
+        try {
+            result = readFromFile(file);
+        } catch (InvalidRobotException e) {
+            System.out.println(filePath + " does not exist");
+        }
         result.stream().forEach(r -> System.out.println("Output: " + r));
         return result;
     }

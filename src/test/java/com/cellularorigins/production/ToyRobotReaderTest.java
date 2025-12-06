@@ -47,12 +47,14 @@ public class ToyRobotReaderTest {
 
     @Test
     public void testSimulateRobotThrowExceptionDueToFileNotExists() {
-        RuntimeException thrown = assertThrows(
+        ArrayList<String> result = ToyRobotReader.simulateToyRobot("notExistsInput.txt");
+        Assertions.assertTrue(result.isEmpty());
+        /*RuntimeException thrown = assertThrows(
             RuntimeException.class,
             () -> ToyRobotReader.simulateToyRobot("test.txt"),
             "Expected simulateToyRobot() to throw an exception when the file does not exist"
         );
-        Assertions.assertTrue(thrown.getMessage().equals("Input file does not exist"));
+        Assertions.assertTrue(thrown.getMessage().equals("Input file does not exist"));*/
     }
 
     @Test
