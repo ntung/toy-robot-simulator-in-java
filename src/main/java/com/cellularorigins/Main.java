@@ -14,16 +14,17 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        start(args);
+        int result = start(args);
+        System.exit(result);
     }
 
-    public static void start(String[] args) {
+    public static int start(String[] args) {
         System.out.print("Welcome to Cellular Origins!\n");
         Options options = ArgumentHandler.createOptions();
         try {
             if (args.length == 0) {
                 ArgumentHandler.help(options);
-                System.exit(0);
+                return 0;
             }
             CommandLine cmd = ArgumentHandler.getCliParser().parse(options, args);
             if (cmd.hasOption("f")) {
@@ -36,16 +37,17 @@ public class Main {
                 ToyRobotFactory.createToyRobot();
             } else if (cmd.hasOption("h")) {
                 ArgumentHandler.help(options);
-                System.exit(0);
+                return 0;
             } else {
                 System.out.println("Wrong syntax! Bye!");
                 LOGGER.debug("Wrong syntax! Bye! Exited!");
-                System.exit(0);
+                return 0;
             }
         } catch (ParseException e) {
             LOGGER.debug("An error happened: {}", e.getMessage());
             ArgumentHandler.help(options);
-            System.exit(0);
+            return 0;
         }
+        return 0;
     }
 }

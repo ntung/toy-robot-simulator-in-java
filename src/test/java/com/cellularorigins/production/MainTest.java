@@ -10,7 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class MainTest {
     @Test
     public void testMainClassWithNullArguments() {
-        Main.start(new String[]{});
+        int actual = Main.start(new String[]{});
+        Assertions.assertNotNull("The program starts properly");
+        Assertions.assertEquals(0, actual);
     }
 
     @Test
