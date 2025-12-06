@@ -6,8 +6,6 @@ import com.cellularorigins.simulation.Simulator;
 import java.io.*;
 import java.util.ArrayList;
 
-import static com.cellularorigins.production.ToyRobotFactory.executeCommand;
-
 public class ToyRobotReader {
     public static ArrayList<String> simulateToyRobot(final String filePath) {
         if (filePath == null) {
@@ -28,7 +26,7 @@ public class ToyRobotReader {
             Simulator simulator = Simulator.createDefaultSimulator();
             String line, output;
             while ((line = br.readLine()) != null) {
-                output = executeCommand(simulator, line);
+                output = simulator.execute(line);
                 if (line.equalsIgnoreCase("report")) {
                     result.add(output);
                 }

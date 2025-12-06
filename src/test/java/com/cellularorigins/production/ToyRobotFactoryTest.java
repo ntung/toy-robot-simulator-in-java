@@ -25,18 +25,18 @@ public class ToyRobotFactoryTest {
 
     @Test
     public void testExecuteCommand() {
-        String report = ToyRobotFactory.executeCommand(simulator, "REPORT");
+        String report = simulator.execute("REPORT");
         Assertions.assertNotNull(report);
         Assertions.assertEquals("0,0,NORTH", report);
-        report = ToyRobotFactory.executeCommand(simulator, "PLACE 0,0,EAST");
+        report = simulator.execute("PLACE 0,0,EAST");
         Assertions.assertTrue(report.contains("Placed successfully"));
     }
 
     @Test
     public void testExecuteInvalidCommand() {
-        String result = ToyRobotFactory.executeCommand(simulator, "PLACE");
+        String result = simulator.execute("PLACE");
         Assertions.assertEquals("Invalid command", result);
-        result = ToyRobotFactory.executeCommand(simulator, "UNKNOW");
+        result = simulator.execute("UNKNOW");
         Assertions.assertTrue(result.isEmpty());
     }
 
@@ -44,7 +44,7 @@ public class ToyRobotFactoryTest {
     public void testExecuteInvalidCommandThrowException() {
         InvalidRobotException thrown = assertThrows(
                 InvalidRobotException.class,
-                () -> ToyRobotFactory.placeCommand(simulator, "PLACE"),
+                () -> simulator.placeCommand("PLACE"),
                 "Expected play() to throw an exception when the command is invalid"
         );
         Assertions.assertFalse(thrown.getMessage().contains("Invalid command"));
@@ -52,10 +52,10 @@ public class ToyRobotFactoryTest {
 
     @Test
     public void testPlaceCommand() {
-        boolean actual = ToyRobotFactory.placeCommand(simulator, "0,0,NORTH");
+        boolean actual = simulator.placeCommand("0,0,NORTH");
         Assertions.assertTrue(actual);
         // this place command tries to put the robot outside the board
-        actual = ToyRobotFactory.placeCommand(simulator, "0,-1,NORTH");
+        actual = simulator.placeCommand("0,-1,NORTH");
         Assertions.assertFalse(actual);
     }
 
@@ -63,7 +63,7 @@ public class ToyRobotFactoryTest {
     public void testPlaceInvalidCommand() {
         InvalidRobotException thrown = assertThrows(
             InvalidRobotException.class,
-            () -> ToyRobotFactory.placeCommand(simulator, "PLACE 0,0,NORTH"),
+            () -> simulator.placeCommand("PLACE 0,0,NORTH"),
             "Expected play() to throw an exception when the command is invalid"
         );
         Assertions.assertFalse(thrown.getMessage().contains("Invalid command"));

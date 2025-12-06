@@ -69,6 +69,51 @@ public class Simulator {
         return robot.report();
     }
 
+    public boolean placeCommand(String commands) {
+        int xValue;
+        int yValue;
+        String[] commandArgs = commands.split(",");
+        try {
+            xValue = Integer.parseInt(commandArgs[0]);
+            yValue = Integer.parseInt(commandArgs[1]);
+        } catch (Exception ex) {
+            throw new InvalidRobotException("Invalid argument");
+        }
+        Direction direction = Direction.from(commandArgs[2]);
+        Position position = new Position(xValue, yValue, direction);
+        return placeRobot(position);
+    }
+
+    public String execute(String commandLine) {
+        String[] commandArgs = commandLine.split(" ");
+        String output = "";
+        try {
+            Command command = Command.from(commandArgs[0]);
+            if (command == Command.PLACE) {
+                try {
+                    if (commandArgs.length == 1) {
+                        return "Invalid command";
+                    }
+                    boolean result = placeCommand(commandArgs[1]);
+                    LOGGER.info("Place command {} {} {}", command.getDescription(), commandArgs[1], (result ?
+                            "successfully" : "unsuccessfully"));
+                    output = "Placed " + (result ? "successfully" : "unsuccessfully");
+                }  catch (IllegalActionException e) {
+                    throw new IllegalActionException(e.getMessage());
+                }
+            } else {
+                try {
+                    output = play(command);
+                } catch (InvalidRobotException | IllegalActionException exception) {
+                    System.out.print(exception.getMessage() + ". Try again with the built-in commands!");
+                }
+            }
+        } catch (IllegalArgumentException ex) {
+            throw new InvalidRobotException("Invalid command");
+        }
+        return output;
+    }
+
     /**
      * Verifies the current position of the robot to determine whether its movement is legal or not.
      * When the robot is positioning at the edges, the movement cannot be performed.
