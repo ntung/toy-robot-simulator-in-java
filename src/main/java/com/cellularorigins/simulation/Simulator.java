@@ -81,7 +81,11 @@ public class Simulator {
         }
         Direction direction = Direction.from(commandArgs[2]);
         Position position = new Position(xValue, yValue, direction);
-        return placeRobot(position);
+        if (gameboard.validatePosition(position)) {
+            return placeRobot(position);
+        } else  {
+            return false;
+        }
     }
 
     public String execute(String commandLine) {
