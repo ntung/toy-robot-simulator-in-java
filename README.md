@@ -1,7 +1,21 @@
 # TOY ROBOT SIMULATOR IN JAVA
-This is a command line Java application that simulates a robot on a square tabletop.
-## Description
+[![OpenJDK](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://openjdk.org/projects/jdk/25/)
+[![Maven Central Version](https://img.shields.io/maven-central/v/org.projectlombok/lombok)](https://mvnrepository.com/artifact/org.projectlombok/lombok)
+[![Homebrew](https://badgen.net/homebrew/v/fish)](https://brew.sh/)
+[![JUnit5](https://img.shields.io/badge/JUnit5-f5f5f5?style=for-the-badge&logo=junit5&logoColor=dc524a)](https://docs.junit.org/current/user-guide/)
 
+This is a command line Java application that simulates a robot on a square tabletop.
+
+## Table of Contents
+- [Description](#description)
+- [Example Input And Output](#example-input-and-output)
+- [Build and Run](#build-and-run)
+- [Usage](#usage-instructions)
+- [For Developers/Contributors](#for-developers-and-contributors)
+- [Further Developments](#considerations-about-the-development)
+- [Licence](#licence)
+
+## Description
 - The application is a simulation of a toy robot moving on a square tabletop,
   of dimensions 5 units x 5 units.
 - There are no other obstructions on the table surface.
@@ -32,7 +46,7 @@ The application that can read in commands of the following form
 - REPORT will announce the X,Y and F of the robot.
 - Any move that would cause the robot to fall must be ignored.
 
-## Example Input and Output:
+## Example Input And Output
 
 a)
 
@@ -61,21 +75,22 @@ c)
 
 	Output: 3,3,NORTH
 
-## BUILD AND RUN
+## Build And Run
 **Exclamation**: This maven-based program is written in and tested with Java 11 or newer versions. To build JAR file 
 with your default JDK, please make sure the following lines in `pom.xml` updated correspondingly.
 ```xml
 <maven.compiler.source>25</maven.compiler.source>
 <maven.compiler.target>25</maven.compiler.target>
 ```
-In the snippet above shows that I have tested the program with Java 25.
-### Compile, Test, Run and Packaging
+In the snippet above shows that I have tested the program with Java 25. The step-by-steps instructions to compile, 
+test, run and packaging are below.
+
 * Compile: `mvn compile`
 * Test: `mvn test`
 * Run: `mvn exec:java` or `java -jar target/ToyRobotSimulator-jar-with-dependencies.jar`.
 * Packaging: `mvn package`, the compiled jar-with-dependencies in *target/* folder
 
-## USAGE
+## Usage Instructions
 ```bash
 $ ls -lht
 drwxr-xr-x@ 20 tnguyen  staff   640B  5 Dec 19:37 htmlReport
@@ -158,5 +173,20 @@ Command is null. Try again with the built-in commands!
 Command is null. Try again with the built-in commands!
 Command is null. Try again with the built-in commands!
 ```
-## LICENSE
-This program is under MIT License. Read [LICENSE](LICENSE) for more information.
+## For Developers And Contributors
+1. Clone this repository.
+2. Open the project in any favourite IDE.
+3. Make sure that the version of JDK no less than 11.
+
+The top package is `com.cellularorigins`. The main class is named `Main.java` where the toy robot simulator is 
+created. Two classes for creating Toy Robot locate in `com.cellularorigins.production` where we can add more methods.
+
+## Considerations about the development
+1. Extend the size of game board. It could be configured via `config.ini`, for instance, when running the program. 
+   If no config file is provided, the program will create a board of 5x5 as the default dimension.
+2. The initial position could be any position.
+3. New commands could be also interesting. 
+4. Support for multiple players: find the optimised route to reach the destination position earliest.
+
+## Licence
+This program is under MIT Licence. Read [LICENCE](LICENCE) for more information.
