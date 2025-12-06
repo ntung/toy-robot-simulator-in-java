@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -63,7 +64,9 @@ public class ToyRobotFactory {
             String report = simulator.execute(commandLine);
 
             // Output to the user and log
-            outputStream.println(report);
+            if (!Objects.equals(report, "")) {
+                outputStream.println(report);
+            }
             LOGGER.info("Report for the command {}: {}", commandLine, report);
             LOGGER.info(report);
         }

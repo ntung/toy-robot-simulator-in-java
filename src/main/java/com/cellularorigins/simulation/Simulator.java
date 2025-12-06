@@ -105,7 +105,7 @@ public class Simulator {
                 try {
                     output = play(command);
                 } catch (InvalidRobotException | IllegalActionException exception) {
-                    System.out.print(exception.getMessage() + ". Try again with the built-in commands!");
+                    System.out.println(exception.getMessage() + ". Try again with the built-in commands!");
                 }
             }
         } catch (IllegalArgumentException ex) {
