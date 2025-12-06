@@ -47,7 +47,8 @@ public enum Direction {
 
     /**
      * This method returns a direction after executing a command.
-     * @param rotatePoint it can be either 1 or -1
+     * @param rotatePoint it can be either 1 or -1. The value -1 means that we rotate the robot 90°
+     *                    anticlockwise/counterclockwise. Otherwise, it will rotate the robot 90° clockwise.
      * @return a {@link Direction} one of the four universal directions
      */
     public Direction changeDirection(int rotatePoint) {
