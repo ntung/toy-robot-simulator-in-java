@@ -150,6 +150,13 @@ Output: 3,3,NORTH
 $ java -jar ToyRobotSimulator.jar -f src/main/resources/input/input05.txt
 Welcome to Cellular Origins!
 src/main/resources/input/input05.txt does not exist
+
+% java -jar ToyRobotSimulator.jar -f ~/tmp/test.groovy
+Welcome to Cellular Origins!
+Command is null. Try again with the built-in commands!
+Command is null. Try again with the built-in commands!
+Command is null. Try again with the built-in commands!
+Command is null. Try again with the built-in commands!
 ```
 ## LICENSE
 This program is under MIT License. Read [LICENSE](LICENSE) for more information.
