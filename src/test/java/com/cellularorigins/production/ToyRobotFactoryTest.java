@@ -38,7 +38,7 @@ public class ToyRobotFactoryTest {
         String result = ToyRobotFactory.executeCommand(simulator, "PLACE");
         Assertions.assertEquals("Invalid command", result);
         result = ToyRobotFactory.executeCommand(simulator, "UNKNOW");
-        Assertions.assertTrue(result.contains("Command is null"));
+        Assertions.assertTrue(result.isEmpty());
     }
 
     @Test

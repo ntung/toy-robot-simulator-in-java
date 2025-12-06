@@ -48,7 +48,7 @@ public class ToyRobotFactory {
 
     public static String executeCommand(Simulator simulator, String commandLine) {
         String[] commandArgs = commandLine.split(" ");
-        String output;
+        String output = "";
         try {
             Command command = Command.from(commandArgs[0]);
             if (command == Command.PLACE) {
@@ -67,7 +67,6 @@ public class ToyRobotFactory {
                 try {
                     output = simulator.play(command);
                 } catch (InvalidRobotException | IllegalActionException exception) {
-                    output = exception.getMessage();
                     System.out.print(exception.getMessage() + ". Try again with the built-in commands!");
                 }
             }
