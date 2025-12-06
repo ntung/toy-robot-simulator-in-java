@@ -37,10 +37,12 @@ public class ToyRobotFactory {
             // receive input
             String commandLine = scanner.nextLine();
             if (commandLine.equalsIgnoreCase("quit")) {
+                LOGGER.info("Quitting...");
                 break;
             }
             // parse the input and execute the command
             String report = executeCommand(simulator, commandLine);
+            LOGGER.info("Report for the command {}: {}", commandLine, report);
             System.out.println(report);
             LOGGER.info(report);
         }

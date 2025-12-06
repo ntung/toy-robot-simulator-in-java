@@ -51,12 +51,18 @@ public class Simulator {
                     LOGGER.info("Moving Robot");
                     robot.move();
                 } else {
-                    robot.report();
                     LOGGER.info("Robot cannot move");
+                    robot.report();
                 }
             }
-            case LEFT -> robot.left();
-            case RIGHT -> robot.right();
+            case LEFT -> {
+                LOGGER.info("Turning left Robot");
+                robot.left();
+            }
+            case RIGHT -> {
+                LOGGER.info("Turning right Robot");
+                robot.right();
+            }
             default ->  {}
         }
 
