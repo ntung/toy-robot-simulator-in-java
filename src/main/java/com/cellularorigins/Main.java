@@ -1,14 +1,13 @@
 package com.cellularorigins;
 
 import com.cellularorigins.production.ToyRobotFactory;
+import com.cellularorigins.production.ToyRobotReader;
 import com.cellularorigins.utils.ArgumentHandler;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.FileNotFoundException;
 
 
 public class Main {
@@ -26,7 +25,7 @@ public class Main {
             if (cmd.hasOption("f")) {
                 String filePath = cmd.getOptionValue("f");
                 LOGGER.info("Parsing and running the toy robot simulator from the input file: {}", filePath);
-                ToyRobotFactory.simulateToyRobot(filePath);
+                ToyRobotReader.simulateToyRobot(filePath);
             } else if (cmd.hasOption("i")) {
                 LOGGER.info("Interactive mode enabled.");
                 ToyRobotFactory.usage();
@@ -43,8 +42,6 @@ public class Main {
             LOGGER.debug("An error happened: {}", e.getMessage());
             ArgumentHandler.help(options);
             System.exit(0);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 }

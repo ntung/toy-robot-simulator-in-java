@@ -92,36 +92,4 @@ public class ToyRobotFactory {
         Position position = new Position(xValue, yValue, direction);
         return simulator.placeRobot(position);
     }
-
-    public static ArrayList<String> simulateToyRobot(final String filePath) throws FileNotFoundException {
-        if (filePath == null) {
-            throw new InvalidRobotException("Invalid file path");
-        }
-        File file = new File(filePath);
-        ArrayList<String> result = readFromFile(file);
-        result.stream().forEach(r -> {
-            System.out.println("Output: " + r);
-        });
-        return result;
-    }
-
-    private static ArrayList<String> readFromFile(final File file) {
-        if (!file.exists()) {
-            throw new InvalidRobotException("Input file does not exist");
-        }
-        ArrayList<String> result = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            Simulator simulator = Simulator.createDefaultSimulator();
-            String line, output;
-            while ((line = br.readLine()) != null) {
-                output = executeCommand(simulator, line);
-                if (line.equalsIgnoreCase("report")) {
-                    result.add(output);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return result;
-    }
 }

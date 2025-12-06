@@ -1,0 +1,80 @@
+package com.cellularorigins.production;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class ToyRobotReaderTest {
+    @BeforeAll
+    static void init() {
+        ClassLoader classLoader = ToyRobotReaderTest.class.getClassLoader();
+        File inputDir = new File(classLoader.getResource("input").getFile());
+        //File file = new File(inputDir, classLoader.getResource("ToyRobotReader.txt").getFile());
+    }
+
+    public static List<String> loadTestFiles() {
+        ClassLoader classLoader = ToyRobotReaderTest.class.getClassLoader();
+        File inputDir = new File(classLoader.getResource("input").getFile());
+        List<String> fileNames = new ArrayList<>();
+        for (File file : inputDir.listFiles()) {
+            fileNames.add(file.getName());
+        }
+        Collections.sort(fileNames);
+        return fileNames;
+    }
+
+    @Test
+    public void testSimulateRobotThrowExceptionDueToInvalidFilePath() {
+        RuntimeException thrown = assertThrows(
+            RuntimeException.class,
+            () -> ToyRobotReader.simulateToyRobot(null),
+            "Expected simulateToyRobot() to throw an exception when the file path is null"
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid file path"));
+    }
+
+    @Test
+    public void testSimulateRobotThrowExceptionDueToFileNotExists() {
+        RuntimeException thrown = assertThrows(
+            RuntimeException.class,
+            () -> ToyRobotReader.simulateToyRobot("test.txt"),
+            "Expected simulateToyRobot() to throw an exception when the file does not exist"
+        );
+        Assertions.assertTrue(thrown.getMessage().equals("Input file does not exist"));
+    }
+
+    @Test
+    public void testSimulateRobotWithValidFile(@TempDir Path tempDir) throws IOException {
+        Path robotDir = tempDir.resolve("ToyRobotReaderTest");
+        Files.createDirectory(robotDir);
+        List<String> testCases = new ArrayList<>(
+            Arrays.asList(
+                "PLACE 0,0,NORTH\nMOVE\nREPORT;0,1,NORTH",
+                "PLACE 0,0,NORTH\nLEFT\nREPORT;0,0,WEST",
+                "PLACE 1,2,EAST\nMOVE\nMOVE\nLEFT\nMOVE\nREPORT;3,3,NORTH",
+                "PLACE 0,0,NORTH\nMOVE\nREPORT\nPLACE 0,0,NORTH\nLEFT\nREPORT\nPLACE 1,2,EAST\nMOVE\nMOVE\nLEFT\n" +
+                    "MOVE\nREPORT;0,1,NORTH$0,0,WEST$3,3,NORTH"
+            )
+        );
+        for (String testCase : testCases) {
+            String[] parts = testCase.split(";");
+            Files.write(robotDir.resolve("ToyRobotReaderInput.txt"), parts[0].getBytes());
+            Path filePath = robotDir.resolve("ToyRobotReaderInput.txt");
+            ArrayList<String> result = ToyRobotReader.simulateToyRobot(filePath.toFile().getAbsolutePath());
+            Assertions.assertNotNull(result);
+            Assertions.assertEquals(parts[1], String.join("$",  result));
+        }
+    }
+}
