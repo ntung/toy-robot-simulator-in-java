@@ -1,10 +1,5 @@
 package com.cellularorigins.production;
 
-import com.cellularorigins.core.Command;
-import com.cellularorigins.core.Direction;
-import com.cellularorigins.core.Position;
-import com.cellularorigins.exception.IllegalActionException;
-import com.cellularorigins.exception.InvalidRobotException;
 import com.cellularorigins.simulation.Simulator;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
