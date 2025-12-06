@@ -85,13 +85,13 @@ public class SimulatorTest {
         Robot robot = simulator.getRobot();
         robot.setPosition(new Position(0, 0, Direction.NORTH));
         String report = simulator.play(Command.MOVE);
-        Assertions.assertEquals("0, 1, NORTH", report);
+        Assertions.assertEquals("0,1,NORTH", report);
         report = simulator.play(Command.LEFT);
-        Assertions.assertEquals("0, 1, WEST", report);
+        Assertions.assertEquals("0,1,WEST", report);
         report = simulator.play(Command.RIGHT);
-        Assertions.assertEquals("0, 1, NORTH", report);
+        Assertions.assertEquals("0,1,NORTH", report);
         report = simulator.play(Command.RIGHT);
-        Assertions.assertEquals("0, 1, EAST", report);
+        Assertions.assertEquals("0,1,EAST", report);
     }
 
     @Test

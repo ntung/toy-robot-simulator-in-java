@@ -1,6 +1,5 @@
 package com.cellularorigins.production;
 
-import com.cellularorigins.core.Command;
 import com.cellularorigins.core.Direction;
 import com.cellularorigins.core.Position;
 import com.cellularorigins.exception.InvalidRobotException;
@@ -28,7 +27,7 @@ public class ToyRobotFactoryTest {
     public void testExecuteCommand() {
         String report = ToyRobotFactory.executeCommand(simulator, "REPORT");
         Assertions.assertNotNull(report);
-        Assertions.assertEquals("0, 0, NORTH", report);
+        Assertions.assertEquals("0,0,NORTH", report);
         report = ToyRobotFactory.executeCommand(simulator, "PLACE 0,0,EAST");
         Assertions.assertTrue(report.contains("Placed successfully"));
     }

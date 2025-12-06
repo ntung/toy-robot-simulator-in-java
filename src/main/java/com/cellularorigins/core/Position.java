@@ -26,6 +26,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return String.format("%d, %d, %s", x, y,  direction.getDescription());
+        return String.format("%d,%d,%s", x, y,  direction.getDescription());
     }
 }

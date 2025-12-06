@@ -20,7 +20,7 @@ public class PositionTest {
 
     @Test
     public void testToString() {
-        String expectedString = "0, 0, NORTH";
+        String expectedString = "0,0,NORTH";
         Assertions.assertEquals(expectedString, position.toString());
     }
 }
