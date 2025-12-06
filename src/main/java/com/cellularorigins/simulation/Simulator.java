@@ -1,6 +1,7 @@
 package com.cellularorigins.simulation;
 
 import com.cellularorigins.core.Command;
+import com.cellularorigins.core.Direction;
 import com.cellularorigins.core.Position;
 import com.cellularorigins.exception.IllegalActionException;
 import com.cellularorigins.exception.InvalidRobotException;
@@ -81,5 +82,17 @@ public class Simulator {
         // after moving, the robot is still inside the board
         return x >= 0 && x <= gameboard.getRows() - 1
                 && y >= 0 && y <= gameboard.getCols() - 1;
+    }
+
+    /**
+     * Creates a single simulator with the default values.
+     *
+     * @return {@link Simulator}
+     */
+    public static Simulator createDefaultSimulator() {
+        GameBoard gameBoard = new GameBoard(5, 5);
+        Position startPosition = new Position(0, 0, Direction.NORTH);
+        Robot robot = new Robot(startPosition);
+        return new Simulator(gameBoard, robot);
     }
 }

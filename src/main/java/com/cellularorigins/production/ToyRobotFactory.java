@@ -5,8 +5,6 @@ import com.cellularorigins.core.Direction;
 import com.cellularorigins.core.Position;
 import com.cellularorigins.exception.IllegalActionException;
 import com.cellularorigins.exception.InvalidRobotException;
-import com.cellularorigins.simulation.GameBoard;
-import com.cellularorigins.simulation.Robot;
 import com.cellularorigins.simulation.Simulator;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +13,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+/**
+ *
+ */
 @Getter @Setter
 public class ToyRobotFactory {
     /**
@@ -28,10 +29,7 @@ public class ToyRobotFactory {
     }
 
     public static void createToyRobot() {
-        GameBoard gameBoard = new GameBoard(5, 5);
-        Position startPosition = new Position(0, 0, Direction.NORTH);
-        Robot robot = new Robot(startPosition);
-        Simulator simulator = new Simulator(gameBoard, robot);
+        Simulator simulator = Simulator.createDefaultSimulator();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             // receive input
@@ -40,14 +38,13 @@ public class ToyRobotFactory {
                 break;
             }
             // parse the input and execute the command
-            String report = executeCommand(simulator, commandLine);
-            System.out.println(report);
+            executeCommand(simulator, commandLine);
         }
     }
 
     public static String executeCommand(Simulator simulator, String commandLine) {
         String[] commandArgs = commandLine.split(" ");
-        String output = "";
+        String output;
         try {
             Command command = Command.from(commandArgs[0]);
             if (command == Command.PLACE) {
@@ -58,6 +55,7 @@ public class ToyRobotFactory {
                     boolean result = placeCommand(simulator, commandArgs[1]);
                     LOGGER.info("Place command {} {} {}", command.getDescription(), commandArgs[1], (result ?
                             "successfully" : "unsuccessfully"));
+                    output = "Placed " + (result ? "successfully" : "unsuccessfully");
                 }  catch (IllegalActionException e) {
                     throw new IllegalActionException(e.getMessage());
                 }
@@ -65,6 +63,7 @@ public class ToyRobotFactory {
                 try {
                     output = simulator.play(command);
                 } catch (InvalidRobotException | IllegalActionException exception) {
+                    output = exception.getMessage();
                     System.out.print(exception.getMessage() + ". Try again with the built-in commands!");
                 }
             }

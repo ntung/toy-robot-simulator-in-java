@@ -1,7 +1,6 @@
 package com.cellularorigins.core;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * An enum class representing the commands of the robot.

@@ -29,12 +29,26 @@ public class ToyRobotFactoryTest {
         String report = ToyRobotFactory.executeCommand(simulator, "REPORT");
         Assertions.assertNotNull(report);
         Assertions.assertEquals("0, 0, NORTH", report);
+        report = ToyRobotFactory.executeCommand(simulator, "PLACE 0,0,EAST");
+        Assertions.assertTrue(report.contains("Placed successfully"));
     }
 
     @Test
     public void testExecuteInvalidCommand() {
         String result = ToyRobotFactory.executeCommand(simulator, "PLACE");
         Assertions.assertEquals("Invalid command", result);
+        result = ToyRobotFactory.executeCommand(simulator, "UNKNOW");
+        Assertions.assertTrue(result.contains("Command is null"));
+    }
+
+    @Test
+    public void testExecuteInvalidCommandThrowException() {
+        InvalidRobotException thrown = assertThrows(
+                InvalidRobotException.class,
+                () -> ToyRobotFactory.placeCommand(simulator, "PLACE"),
+                "Expected play() to throw an exception when the command is invalid"
+        );
+        Assertions.assertFalse(thrown.getMessage().contains("Invalid command"));
     }
 
     @Test

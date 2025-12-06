@@ -107,4 +107,14 @@ public class SimulatorTest {
         Assertions.assertEquals(Direction.SOUTH, simulator.getRobot().getPosition().getDirection());
         Assertions.assertFalse(simulator.canMove());
     }
+
+    @Test
+    public void testCreateDefaultSimulator() {
+        Simulator simulator = Simulator.createDefaultSimulator();
+        Assertions.assertNotNull(simulator);
+        Assertions.assertTrue(simulator.canMove());
+        Assertions.assertSame(Direction.NORTH, simulator.getRobot().getPosition().getDirection());
+        Assertions.assertEquals(5, simulator.getGameboard().getRows());
+        Assertions.assertEquals(5, simulator.getGameboard().getCols());
+    }
 }
