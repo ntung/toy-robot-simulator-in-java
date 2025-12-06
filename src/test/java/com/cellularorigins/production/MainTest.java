@@ -5,6 +5,7 @@ import com.cellularorigins.exception.InvalidRobotException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MainTest {
@@ -13,6 +14,10 @@ public class MainTest {
         int actual = Main.start(new String[]{});
         Assertions.assertNotNull("The program starts properly");
         Assertions.assertEquals(0, actual);
+        actual = Main.start(new String[]{""});
+        assertEquals(0, actual);
+        actual = Main.start(new String[]{"-h"});
+        assertEquals(0, actual);
     }
 
     @Test

@@ -92,12 +92,24 @@ public class SimulatorTest {
         Assertions.assertEquals("0,1,NORTH", report);
         report = simulator.play(Command.RIGHT);
         Assertions.assertEquals("0,1,EAST", report);
+        boolean result = simulator.placeCommand("0,0,SOUTH");
+        Assertions.assertTrue(result);
+        report = simulator.play(Command.MOVE);
+        Assertions.assertEquals("0,0,SOUTH", report);
     }
 
     @Test
     public void testCanMoveMethodAtLeftBottomCorner() {
         Assertions.assertEquals(Direction.NORTH, simulator.getRobot().getPosition().getDirection());
         Assertions.assertTrue(simulator.canMove());
+    }
+
+    @Test
+    public void testCannotMove() {
+        simulator.getRobot().setPosition(new Position(0, 0, Direction.SOUTH));
+        Assertions.assertFalse(simulator.canMove());
+        String report = simulator.execute("MOVE");
+        Assertions.assertEquals("0,0,SOUTH", report);
     }
 
     @Test
