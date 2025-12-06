@@ -47,7 +47,10 @@ public class ArgumentHandler {
                 .hasArg(true)
                 .build();
         optFile.setRequired(false);
-        options.addOption(optText).addOption(optFile);
+        OptionGroup group = new OptionGroup();
+        group.addOption(optText);
+        group.addOption(optFile);
+        options.addOptionGroup(group);
         return options;
     }
 }
