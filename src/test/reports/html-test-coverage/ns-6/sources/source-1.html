@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ArgumentHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.cellularorigins.utils</a>
+</div>
+
+<h1>Coverage Summary for Class: ArgumentHandler (com.cellularorigins.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArgumentHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.2%
+  </span>
+  <span class="absValue">
+    (20/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.cellularorigins.utils;
+&nbsp;
+&nbsp;import lombok.Getter;
+&nbsp;import org.apache.commons.cli.*;
+&nbsp;
+&nbsp;/**
+&nbsp; * This class is used to handle the arguments of the static {@code main(String[] args)} method
+&nbsp; * in the {@link com.cellularorigins.Main} class.
+&nbsp; *
+&nbsp; * @author &lt;a href=&quot;mailto:nvntung@gmail.com&quot;&gt;Tung Nguyen&lt;/a&gt;
+&nbsp; */
+<b class="nc">&nbsp;public class ArgumentHandler {</b>
+&nbsp;    /**
+&nbsp;     * The default CLI Parser
+&nbsp;     */
+&nbsp;    @Getter
+<b class="fc">&nbsp;    private static final CommandLineParser cliParser = new DefaultParser();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The options holding all arguments of the main program.
+&nbsp;     */
+<b class="fc">&nbsp;    private static final Options options = new Options();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Prints the help
+&nbsp;     * @param options {@link  Options} representing all the options of the program.
+&nbsp;     */
+&nbsp;    public static void help(Options options) {
+<b class="fc">&nbsp;        HelpFormatter helper = new HelpFormatter();</b>
+<b class="fc">&nbsp;        helper.printHelp(&quot;java -jar ToyRobotSimulator.jar&quot;, options, true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates the options of the program.
+&nbsp;     *
+&nbsp;     * @return {@link Options} object
+&nbsp;     */
+&nbsp;    public static Options createOptions() {
+<b class="fc">&nbsp;        String description = &quot;Interactive mode - talk to the program at the console&quot;;</b>
+<b class="fc">&nbsp;        Option optText = new Option(&quot;i&quot;, &quot;interactive&quot;, false, description);</b>
+<b class="fc">&nbsp;        optText.setRequired(false);</b>
+<b class="fc">&nbsp;        description = &quot;Input File instead of interacting with the program at the console&quot;;</b>
+<b class="fc">&nbsp;        Option optFile = Option.builder(&quot;f&quot;)</b>
+<b class="fc">&nbsp;                .longOpt(&quot;input-file&quot;)</b>
+<b class="fc">&nbsp;                .argName(&quot;file&quot;)</b>
+<b class="fc">&nbsp;                .desc(description)</b>
+<b class="fc">&nbsp;                .hasArg(true)</b>
+<b class="fc">&nbsp;                .build();</b>
+<b class="fc">&nbsp;        optFile.setRequired(false);</b>
+<b class="fc">&nbsp;        OptionGroup group = new OptionGroup();</b>
+<b class="fc">&nbsp;        group.addOption(optText);</b>
+<b class="fc">&nbsp;        group.addOption(optFile);</b>
+<b class="fc">&nbsp;        options.addOptionGroup(group);</b>
+<b class="fc">&nbsp;        return options;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-07 01:00</div>
+</div>
+</body>
+</html>

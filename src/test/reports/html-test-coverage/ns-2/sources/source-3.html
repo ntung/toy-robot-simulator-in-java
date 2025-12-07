@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Position</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.cellularorigins.core</a>
+</div>
+
+<h1>Coverage Summary for Class: Position (com.cellularorigins.core)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Position</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.cellularorigins.core;
+&nbsp;
+&nbsp;import lombok.*;
+&nbsp;
+&nbsp;/**
+&nbsp; * A class representing the robot position.
+&nbsp; */
+&nbsp;@Getter @Setter
+&nbsp;@NoArgsConstructor @AllArgsConstructor
+&nbsp;@Builder
+&nbsp;public class Position {
+&nbsp;    private int x;
+&nbsp;    private int y;
+&nbsp;    private Direction direction;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates the given position
+&nbsp;     *
+&nbsp;     * @param x the horizontal position
+&nbsp;     * @param y the vertical position
+&nbsp;     */
+&nbsp;    public void updatePosition(int x, int y) {
+<b class="fc">&nbsp;        this.x += x;</b>
+<b class="fc">&nbsp;        this.y += y;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return String.format(&quot;%d,%d,%s&quot;, x, y,  direction.getDescription());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-07 01:00</div>
+</div>
+</body>
+</html>

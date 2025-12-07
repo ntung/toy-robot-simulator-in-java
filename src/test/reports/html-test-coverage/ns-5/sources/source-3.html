@@ -1,0 +1,303 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Simulator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.cellularorigins.simulation</a>
+</div>
+
+<h1>Coverage Summary for Class: Simulator (com.cellularorigins.simulation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Simulator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.5%
+  </span>
+  <span class="absValue">
+    (29/31)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.7%
+  </span>
+  <span class="absValue">
+    (58/60)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Simulator$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.5%
+  </span>
+  <span class="absValue">
+    (29/31)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.7%
+  </span>
+  <span class="absValue">
+    (59/61)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.cellularorigins.simulation;
+&nbsp;
+&nbsp;import com.cellularorigins.core.Command;
+&nbsp;import com.cellularorigins.core.Direction;
+&nbsp;import com.cellularorigins.core.Position;
+&nbsp;import com.cellularorigins.exception.IllegalActionException;
+&nbsp;import com.cellularorigins.exception.InvalidRobotException;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.Getter;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import lombok.Setter;
+&nbsp;import org.apache.logging.log4j.LogManager;
+&nbsp;import org.apache.logging.log4j.Logger;
+&nbsp;
+&nbsp;@Getter @Setter
+&nbsp;@NoArgsConstructor @AllArgsConstructor
+&nbsp;public class Simulator {
+&nbsp;    private final Logger LOGGER = LogManager.getLogger(Simulator.class);
+&nbsp;
+&nbsp;    private GameBoard gameboard;
+&nbsp;    private Robot robot;
+&nbsp;
+&nbsp;    public boolean placeRobot(final Position position) {
+<b class="fc">&nbsp;        robot.place(position);</b>
+<b class="fc">&nbsp;        return gameboard.validatePosition(robot.getPosition());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Plays the toy robot after placing it at the original position.
+&nbsp;     *
+&nbsp;     * @param command A {@link Command} representing the action to the robot.
+&nbsp;     * @return A {@link String} representing the report after executing the command.
+&nbsp;     */
+&nbsp;    public String play(final Command command)  {
+<b class="fc">&nbsp;        if  (gameboard == null) {</b>
+<b class="fc">&nbsp;            throw new InvalidRobotException(&quot;Gameboard is null&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (command == null) {</b>
+<b class="fc">&nbsp;            throw new IllegalActionException(&quot;Command is null&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (robot == null) {</b>
+<b class="fc">&nbsp;            throw new InvalidRobotException(&quot;Robot is null&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        String report = &quot;&quot;;</b>
+<b class="fc">&nbsp;        if (robot.getPosition() == null) {</b>
+<b class="fc">&nbsp;            return report;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        switch (command) {</b>
+&nbsp;            case MOVE -&gt; {
+<b class="fc">&nbsp;                if (canMove()) {</b>
+<b class="fc">&nbsp;                    LOGGER.info(&quot;Moving Robot&quot;);</b>
+<b class="fc">&nbsp;                    robot.move();</b>
+&nbsp;                } else {
+<b class="fc">&nbsp;                    LOGGER.info(&quot;Robot cannot move&quot;);</b>
+<b class="fc">&nbsp;                    robot.report();</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;            case LEFT -&gt; {
+<b class="fc">&nbsp;                LOGGER.info(&quot;Turning left Robot&quot;);</b>
+<b class="fc">&nbsp;                robot.left();</b>
+&nbsp;            }
+&nbsp;            case RIGHT -&gt; {
+<b class="fc">&nbsp;                LOGGER.info(&quot;Turning right Robot&quot;);</b>
+<b class="fc">&nbsp;                robot.right();</b>
+&nbsp;            }
+&nbsp;            default -&gt;  {}
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return robot.report();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean placeCommand(String commands) {
+&nbsp;        int xValue;
+&nbsp;        int yValue;
+<b class="fc">&nbsp;        String[] commandArgs = commands.split(&quot;,&quot;);</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            xValue = Integer.parseInt(commandArgs[0]);</b>
+<b class="fc">&nbsp;            yValue = Integer.parseInt(commandArgs[1]);</b>
+&nbsp;        } catch (Exception ex) {
+<b class="fc">&nbsp;            throw new InvalidRobotException(&quot;Invalid argument&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        Direction direction = Direction.from(commandArgs[2]);</b>
+<b class="fc">&nbsp;        Position position = new Position(xValue, yValue, direction);</b>
+<b class="fc">&nbsp;        if (gameboard.validatePosition(position)) {</b>
+<b class="fc">&nbsp;            return placeRobot(position);</b>
+&nbsp;        } else  {
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public String execute(String commandLine) {
+<b class="fc">&nbsp;        String[] commandArgs = commandLine.split(&quot; &quot;);</b>
+<b class="fc">&nbsp;        String output = &quot;&quot;;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            Command command = Command.from(commandArgs[0]);</b>
+<b class="fc">&nbsp;            if (command == Command.PLACE) {</b>
+&nbsp;                try {
+<b class="fc">&nbsp;                    if (commandArgs.length == 1) {</b>
+<b class="fc">&nbsp;                        return &quot;Invalid command&quot;;</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    boolean result = placeCommand(commandArgs[1]);</b>
+<b class="fc">&nbsp;                    LOGGER.info(&quot;Place command {} {} {}&quot;, command.getDescription(), commandArgs[1], (result ?</b>
+<b class="fc">&nbsp;                            &quot;successfully&quot; : &quot;unsuccessfully&quot;));</b>
+<b class="fc">&nbsp;                    output = &quot;Placed &quot; + (result ? &quot;successfully&quot; : &quot;unsuccessfully&quot;);</b>
+&nbsp;                }  catch (IllegalActionException e) {
+<b class="nc">&nbsp;                    throw new IllegalActionException(e.getMessage());</b>
+&nbsp;                }
+&nbsp;            } else {
+&nbsp;                try {
+<b class="fc">&nbsp;                    output = play(command);</b>
+&nbsp;                } catch (InvalidRobotException | IllegalActionException exception) {
+<b class="fc">&nbsp;                    System.out.println(exception.getMessage() + &quot;. Try again with the built-in commands!&quot;);</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        } catch (IllegalArgumentException ex) {
+<b class="nc">&nbsp;            throw new InvalidRobotException(&quot;Invalid command&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return output;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Verifies the current position of the robot to determine whether its movement is legal or not.
+&nbsp;     * When the robot is positioning at the edges, the movement cannot be performed.
+&nbsp;     * In other words, a valid position should be inside the game board.
+&nbsp;     *
+&nbsp;     * @return true if the next movement is allowed. Otherwise, it returns false.
+&nbsp;     */
+&nbsp;    public boolean canMove() {
+<b class="fc">&nbsp;        Position currentPosition = robot.getPosition();</b>
+<b class="fc">&nbsp;        Position tempPosition = Position.builder()</b>
+<b class="fc">&nbsp;                .x(currentPosition.getX())</b>
+<b class="fc">&nbsp;                .y(currentPosition.getY())</b>
+<b class="fc">&nbsp;                .direction(currentPosition.getDirection())</b>
+<b class="fc">&nbsp;                .build();</b>
+<b class="fc">&nbsp;        Position newPosition = robot.tryMove(tempPosition);</b>
+<b class="fc">&nbsp;        int x = newPosition.getX(),  y = newPosition.getY();</b>
+&nbsp;        // after moving, the robot is still inside the board
+<b class="pc">&nbsp;        return x &gt;= 0 &amp;&amp; x &lt;= gameboard.getRows() - 1</b>
+<b class="pc">&nbsp;                &amp;&amp; y &gt;= 0 &amp;&amp; y &lt;= gameboard.getCols() - 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a single simulator with the default values.
+&nbsp;     *
+&nbsp;     * @return {@link Simulator}
+&nbsp;     */
+&nbsp;    public static Simulator createDefaultSimulator() {
+<b class="fc">&nbsp;        GameBoard gameBoard = new GameBoard(5, 5);</b>
+<b class="fc">&nbsp;        Position startPosition = new Position(0, 0, Direction.NORTH);</b>
+<b class="fc">&nbsp;        Robot robot = new Robot(startPosition);</b>
+<b class="fc">&nbsp;        return new Simulator(gameBoard, robot);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-07 01:00</div>
+</div>
+</body>
+</html>

@@ -178,6 +178,8 @@ Command is null. Try again with the built-in commands!
 2. Open the project in any favourite IDE.
 3. Make sure that the version of JDK no less than 11.
 
+**Test Coverage Report**: It was uploaded alongside the project in `src/test/report/html-test-coverage`.
+
 The top package is `com.cellularorigins`. The main class is named `Main.java` where the toy robot simulator is 
 created. Two classes for creating Toy Robot locate in `com.cellularorigins.production` where we can add more methods.
 
