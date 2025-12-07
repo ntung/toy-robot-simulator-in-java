@@ -9,27 +9,29 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ToyRobotReaderTest {
+    private static List<String> testFiles = new ArrayList<>();
+
     @BeforeAll
-    static void init() {
-        ClassLoader classLoader = ToyRobotReaderTest.class.getClassLoader();
-        File inputDir = new File(classLoader.getResource("input").getFile());
-        //File file = new File(inputDir, classLoader.getResource("ToyRobotReader.txt").getFile());
+    protected static void init() {
+        testFiles = loadTestFiles();
     }
 
-    public static List<String> loadTestFiles() {
+    /**
+     * Loads all the test files
+     *
+     * @return A list of all the absolute paths of all test files
+     */
+    private static List<String> loadTestFiles() {
         ClassLoader classLoader = ToyRobotReaderTest.class.getClassLoader();
-        File inputDir = new File(classLoader.getResource("input").getFile());
+        File inputDir = new File(Objects.requireNonNull(classLoader.getResource("input")).getFile());
         List<String> fileNames = new ArrayList<>();
-        for (File file : inputDir.listFiles()) {
-            fileNames.add(file.getName());
+        for (File file : Objects.requireNonNull(inputDir.listFiles())) {
+            fileNames.add(file.getAbsolutePath());
         }
         Collections.sort(fileNames);
         return fileNames;
@@ -57,6 +59,11 @@ public class ToyRobotReaderTest {
         Assertions.assertTrue(thrown.getMessage().equals("Input file does not exist"));*/
     }
 
+    /**
+     * Tests with the real files.
+     * Read more <a href="https://dzone.com/articles/mock-the-file-system">Mock the File System</a>
+     * @param tempDir {@link Path}
+     */
     @Test
     public void testSimulateRobotWithValidFile(@TempDir Path tempDir) throws IOException {
         Path robotDir = tempDir.resolve("ToyRobotReaderTest");
@@ -77,6 +84,16 @@ public class ToyRobotReaderTest {
             ArrayList<String> result = ToyRobotReader.simulateToyRobot(filePath.toFile().getAbsolutePath());
             Assertions.assertNotNull(result);
             Assertions.assertEquals(parts[1], String.join("$",  result));
+        }
+    }
+
+    @Test
+    public void testSimulateRobotWithActualTestFile() {
+        for (String testFile : testFiles) {
+            System.out.println("Testing against file " + testFile);
+            ArrayList<String> result = ToyRobotReader.simulateToyRobot(testFile);
+            System.out.println(result);
+            Assertions.assertNotNull(result);
         }
     }
 }
