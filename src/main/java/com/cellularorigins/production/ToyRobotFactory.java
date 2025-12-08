@@ -25,7 +25,7 @@ public class ToyRobotFactory {
 
     public static void usage() {
         System.out.println("Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; " +
-                "RIGHT; REPORT. Type `quit` or press `Ctrl+C` to exit the game.");
+                "RIGHT; REPORT; ABOUT. Type `quit` or press `Ctrl+C` to exit the game.");
     }
 
     /**

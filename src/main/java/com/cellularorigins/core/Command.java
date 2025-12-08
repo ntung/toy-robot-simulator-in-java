@@ -15,7 +15,9 @@ public enum Command {
     MOVE("MOVE"),
     LEFT("LEFT"),
     RIGHT("RIGHT"),
-    REPORT("REPORT");
+    REPORT("REPORT"),
+    ABOUT("ABOUT"),
+    RESET("RESET");
 
     private final String description;
 

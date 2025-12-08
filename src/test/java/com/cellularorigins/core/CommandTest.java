@@ -16,6 +16,8 @@ public class CommandTest {
         Assertions.assertEquals(Command.LEFT, Command.from("left"));
         Assertions.assertEquals(Command.RIGHT, Command.from("right"));
         Assertions.assertEquals(Command.REPORT, Command.from("report"));
+        Assertions.assertEquals(Command.ABOUT, Command.from("about"));
+        Assertions.assertEquals(Command.RESET, Command.from("reset"));
         Assertions.assertNull(Command.from("unknown"));
     }
 }

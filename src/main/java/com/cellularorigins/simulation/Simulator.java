@@ -68,10 +68,32 @@ public class Simulator {
                 LOGGER.info("Turning right Robot");
                 robot.right();
             }
+            case ABOUT -> {
+                LOGGER.info("Showing about the current simulator");
+                about();
+            }
+            case RESET -> {
+                LOGGER.info("Resetting the simulator");
+                reset();
+            }
             default ->  {}
         }
 
         return robot.report();
+    }
+
+    private void reset() {
+        LOGGER.info("Unsupported yet");
+        System.out.println("Unsupported yet");
+    }
+
+    /**
+     * Shows the information of the current Simulator
+     */
+    private void about() {
+        String about = "Game Board[" + gameboard.rows() + "," + gameboard.cols() + "]";
+        about +=" and Robot: " + robot.report();
+        System.out.println(about);
     }
 
     /**
