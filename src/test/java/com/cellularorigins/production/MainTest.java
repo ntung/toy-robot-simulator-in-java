@@ -14,7 +14,7 @@ public class MainTest {
         actual = Main.start(new String[]{""});
         assertEquals(0, actual);
         actual = Main.start(new String[]{"-h"});
-        assertEquals(0, actual);
+        assertEquals(1, actual);
     }
 
     @Test

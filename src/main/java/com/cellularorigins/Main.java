@@ -37,7 +37,7 @@ public class Main {
                 ToyRobotFactory.createToyRobot();
             } else if (cmd.hasOption("h")) {
                 ArgumentHandler.help(options);
-                return 0;
+                return 1;
             } else {
                 System.out.println("Wrong syntax! Bye!");
                 LOGGER.debug("Wrong syntax! Bye! Exited!");
@@ -46,7 +46,7 @@ public class Main {
         } catch (ParseException e) {
             LOGGER.debug("An error happened: {}", e.getMessage());
             ArgumentHandler.help(options);
-            return 0;
+            return 1;
         }
         return 0;
     }
