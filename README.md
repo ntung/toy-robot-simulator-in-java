@@ -191,7 +191,10 @@ created. Two classes for creating Toy Robot locate in `com.cellularorigins.produ
 2. The initial position could be any position.
 3. New commands could be also interesting. 
 4. Support for multiple players: find the optimised route to reach the destination position earliest.
-5. Develop a GUI and add an optional argument in the `main()` method to launch the program in graphic mode. 
+5. Develop a GUI and add an optional argument in the `main()` method to launch the program in graphic mode.
+6. Implement [this approach](https://bitspittle.dev/blog/2022/kover-badge) to update the coverage percentage based on 
+   the test report.
+   
 
 ## Licence
 This program is under MIT Licence. Read [LICENCE](LICENCE) for more information.
