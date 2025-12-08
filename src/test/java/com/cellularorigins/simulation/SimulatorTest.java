@@ -44,7 +44,8 @@ public class SimulatorTest {
 
     @Test
     public void testPlayMethodWhenGameBoardNull() {
-        simulator.setGameboard(null);
+        Robot robot = new Robot(new Position(0, 0, Direction.NORTH));
+        Simulator simulator = new Simulator(null, robot);
         InvalidRobotException thrown = assertThrows(
             InvalidRobotException.class,
             () -> simulator.play(Command.MOVE),
@@ -54,8 +55,19 @@ public class SimulatorTest {
     }
 
     @Test
+    public void testPlayMethodWhenRobotAndGameboardNull() {
+        Simulator simulator = new Simulator(null, null);
+        IllegalActionException thrown = assertThrows(
+            IllegalActionException.class,
+            () -> simulator.play(Command.LEFT),
+            "Expected play() to throw an exception when both arguments are null"
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Cannot play with null robot and gameboard"));
+    }
+
+    @Test
     public void testPlayMethodWhenRobotNull() {
-        simulator.setRobot(null);
+        Simulator simulator = new Simulator(new GameBoard(5, 5), null);
         InvalidRobotException thrown = assertThrows(
             InvalidRobotException.class,
             () -> simulator.play(Command.LEFT),

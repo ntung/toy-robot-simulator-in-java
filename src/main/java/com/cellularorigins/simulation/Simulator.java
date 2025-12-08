@@ -5,10 +5,7 @@ import com.cellularorigins.core.Direction;
 import com.cellularorigins.core.Position;
 import com.cellularorigins.exception.IllegalActionException;
 import com.cellularorigins.exception.InvalidRobotException;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +14,8 @@ import org.apache.logging.log4j.Logger;
  *
  * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Value
+@Builder(access = AccessLevel.PUBLIC)
 public class Simulator {
     private final Logger LOGGER = LogManager.getLogger(Simulator.class);
 
@@ -37,6 +34,9 @@ public class Simulator {
      * @return A {@link String} representing the report after executing the command.
      */
     public String play(final Command command)  {
+        if (gameboard == null && robot == null) {
+            throw new IllegalActionException("Cannot play with null robot and gameboard");
+        }
         if  (gameboard == null) {
             throw new InvalidRobotException("Gameboard is null");
         }

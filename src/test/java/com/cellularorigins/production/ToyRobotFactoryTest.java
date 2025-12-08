@@ -6,7 +6,6 @@ import com.cellularorigins.simulation.GameBoard;
 import com.cellularorigins.simulation.Robot;
 import com.cellularorigins.simulation.Simulator;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -15,18 +14,17 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 public class ToyRobotFactoryTest {
-    private final Simulator simulator = new Simulator();
-    @BeforeEach
-    public void setUp() {
+    @Test
+    void testRunToyRobot_ProcessesCommandsAndQuits() {
+        // 0. Init a Simulator
         GameBoard gameboard = new GameBoard(5, 5);
         Position startPosition = new Position(0, 0, Direction.NORTH);
         Robot robot = new Robot(startPosition);
-        simulator.setRobot(robot);
-        simulator.setGameboard(gameboard);
-    }
+        Simulator simulator = Simulator.builder()
+                .gameboard(gameboard)
+                .robot(robot)
+                .build();
 
-    @Test
-    void testRunToyRobot_ProcessesCommandsAndQuits() {
         // 1. Setup Mock Dependencies and Controlled I/O
         String input = "PLACE 0,0,NORTH\nMOVE\nquit\n";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());

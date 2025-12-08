@@ -1,10 +1,7 @@
 package com.cellularorigins.simulation;
 
 import com.cellularorigins.core.Position;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * <p>A class representing the game board.</p>
@@ -12,13 +9,12 @@ import lombok.Setter;
  *
  * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Value
 public class GameBoard {
     // the amount rows
-    private int rows;
+    int rows;
     // the amount columns
-    private int cols;
+    int cols;
 
     /**
      * Validates a specific position.
