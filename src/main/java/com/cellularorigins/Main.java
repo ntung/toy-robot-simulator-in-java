@@ -33,7 +33,7 @@ public class Main {
                 ToyRobotReader.simulateToyRobot(filePath);
             } else if (cmd.hasOption("i")) {
                 LOGGER.info("Interactive mode enabled.");
-                if (!cmd.hasOption("config")) {
+                if (!cmd.hasOption("c")) {
                     System.out.println("No config file provided. The toy robot simulator will be created.");
                     ToyRobotFactory.createToyRobot();
                 } else {

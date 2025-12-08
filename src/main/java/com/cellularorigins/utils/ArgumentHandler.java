@@ -51,6 +51,17 @@ public class ArgumentHandler {
         group.addOption(optText);
         group.addOption(optFile);
         options.addOptionGroup(group);
+
+        description = "Configuration file to build a custom toy robot simulator";
+        optFile = Option.builder("c")
+                .longOpt("config-file")
+                .argName("file")
+                .desc(description)
+                .hasArg(true)
+                .build();
+        optFile.setRequired(false);
+        options.addOption(optFile);
+
         return options;
     }
 }
