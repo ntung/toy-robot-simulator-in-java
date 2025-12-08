@@ -14,6 +14,7 @@ This is a command line Java application that simulates a robot on a square table
 - [Build and Run](#build-and-run)
 - [Usage](#usage-instructions)
 - [For Developers/Contributors](#for-developers-and-contributors)
+- [Test Coverage (100%)](src/test/reports/html-test-coverage/index.html)
 - [Further Developments](#considerations-about-the-development)
 - [Licence](#licence)
 
