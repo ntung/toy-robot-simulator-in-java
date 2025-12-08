@@ -152,8 +152,8 @@ public class Simulator {
         Position newPosition = robot.tryMove(tempPosition);
         int x = newPosition.getX(),  y = newPosition.getY();
         // after moving, the robot is still inside the board
-        return x >= 0 && x <= gameboard.getRows() - 1
-                && y >= 0 && y <= gameboard.getCols() - 1;
+        return x >= 0 && x <= gameboard.rows() - 1
+                && y >= 0 && y <= gameboard.cols() - 1;
     }
 
     /**

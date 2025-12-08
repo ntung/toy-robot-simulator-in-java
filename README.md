@@ -178,7 +178,7 @@ Command is null. Try again with the built-in commands!
 ## For Developers And Contributors
 1. Clone this repository.
 2. Open the project in any favourite IDE.
-3. Make sure that the version of JDK no less than 11.
+3. Make sure that the version of JDK no less than 14.
 
 **Test Coverage Report**: It was uploaded alongside the project in `src/test/report/html-test-coverage`.
 

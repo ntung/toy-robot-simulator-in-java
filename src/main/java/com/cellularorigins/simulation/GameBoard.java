@@ -1,21 +1,16 @@
 package com.cellularorigins.simulation;
 
 import com.cellularorigins.core.Position;
-import lombok.*;
 
 /**
  * <p>A class representing the game board.</p>
  * <p>The game board is defined several rows and columns. By default, it is a square table.</p>
  *
+ * @param rows the amount rows
+ * @param cols the amount columns
  * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
-@Value
-public class GameBoard {
-    // the amount rows
-    int rows;
-    // the amount columns
-    int cols;
-
+public record GameBoard(int rows, int cols) {
     /**
      * Validates a specific position.
      * Remember that the position's coordinates is based on (0, 0).
