@@ -11,12 +11,19 @@ import lombok.Getter;
  */
 @Getter
 public enum Command {
+    // Place the robot at the specific position
     PLACE("PLACE"),
+    // Move the robot to the next cell in the redefined direction
     MOVE("MOVE"),
+    // Move the robot to the left side
     LEFT("LEFT"),
+    // Move the robot to the right side
     RIGHT("RIGHT"),
+    // Print out the current position and direction
     REPORT("REPORT"),
+    // Print out the current info of the game board and robot
     ABOUT("ABOUT"),
+    // Reset the toy robot game to the previous state
     RESET("RESET");
 
     private final String description;
