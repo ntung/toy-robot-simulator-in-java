@@ -60,10 +60,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    95.2%
+    96.8%
   </span>
   <span class="absValue">
-    (20/21)
+    (30/31)
   </span>
 </td>
 </tr>
@@ -125,9 +125,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                .build();</b>
 <b class="fc">&nbsp;        optFile.setRequired(false);</b>
 <b class="fc">&nbsp;        OptionGroup group = new OptionGroup();</b>
+<b class="fc">&nbsp;        group.setRequired(true);</b>
 <b class="fc">&nbsp;        group.addOption(optText);</b>
 <b class="fc">&nbsp;        group.addOption(optFile);</b>
 <b class="fc">&nbsp;        options.addOptionGroup(group);</b>
+&nbsp;
+<b class="fc">&nbsp;        description = &quot;Configuration file to build a custom toy robot simulator&quot;;</b>
+<b class="fc">&nbsp;        optFile = Option.builder(&quot;c&quot;)</b>
+<b class="fc">&nbsp;                .longOpt(&quot;config-file&quot;)</b>
+<b class="fc">&nbsp;                .argName(&quot;file&quot;)</b>
+<b class="fc">&nbsp;                .desc(description)</b>
+<b class="fc">&nbsp;                .hasArg(true)</b>
+<b class="fc">&nbsp;                .build();</b>
+<b class="fc">&nbsp;        optFile.setRequired(false);</b>
+<b class="fc">&nbsp;        options.addOption(optFile);</b>
+&nbsp;
 <b class="fc">&nbsp;        return options;</b>
 &nbsp;    }
 &nbsp;}
@@ -154,7 +166,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-07 01:00</div>
+    <div style="float:right;">generated on 2025-12-08 12:48</div>
 </div>
 </body>
 </html>

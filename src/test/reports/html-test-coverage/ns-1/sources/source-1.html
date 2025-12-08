@@ -64,18 +64,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    75%
+    20%
   </span>
   <span class="absValue">
-    (6/8)
+    (2/10)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    71.4%
+    32.3%
   </span>
   <span class="absValue">
-    (20/28)
+    (10/31)
   </span>
 </td>
 </tr>
@@ -116,28 +116,35 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                return 0;</b>
 &nbsp;            }
 <b class="fc">&nbsp;            CommandLine cmd = ArgumentHandler.getCliParser().parse(options, args);</b>
-<b class="fc">&nbsp;            if (cmd.hasOption(&quot;f&quot;)) {</b>
-<b class="fc">&nbsp;                String filePath = cmd.getOptionValue(&quot;f&quot;);</b>
-<b class="fc">&nbsp;                LOGGER.info(&quot;Parsing and running the toy robot simulator from the input file: {}&quot;, filePath);</b>
-<b class="fc">&nbsp;                ToyRobotReader.simulateToyRobot(filePath);</b>
-<b class="pc">&nbsp;            } else if (cmd.hasOption(&quot;i&quot;)) {</b>
+<b class="nc">&nbsp;            if (cmd.hasOption(&quot;f&quot;)) {</b>
+<b class="nc">&nbsp;                String filePath = cmd.getOptionValue(&quot;f&quot;);</b>
+<b class="nc">&nbsp;                LOGGER.info(&quot;Parsing and running the toy robot simulator from the input file: {}&quot;, filePath);</b>
+<b class="nc">&nbsp;                ToyRobotReader.simulateToyRobot(filePath);</b>
+<b class="nc">&nbsp;            } else if (cmd.hasOption(&quot;i&quot;)) {</b>
 <b class="nc">&nbsp;                LOGGER.info(&quot;Interactive mode enabled.&quot;);</b>
-<b class="nc">&nbsp;                ToyRobotFactory.usage();</b>
-<b class="nc">&nbsp;                ToyRobotFactory.createToyRobot();</b>
-<b class="pc">&nbsp;            } else if (cmd.hasOption(&quot;h&quot;)) {</b>
+<b class="nc">&nbsp;                if (!cmd.hasOption(&quot;c&quot;)) {</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;No config file provided. The toy robot simulator will be created.&quot;);</b>
+<b class="nc">&nbsp;                    ToyRobotFactory.createToyRobot();</b>
+&nbsp;                } else {
+&nbsp;                    // create a customised toy robot simulator
+<b class="nc">&nbsp;                    System.out.println(&quot;Build a custom toy robot simulator from a configuration file &quot; +</b>
+&nbsp;                            &quot;hasn&#39;t been supported yet!&quot;);
+&nbsp;                }
+<b class="nc">&nbsp;            } else if (cmd.hasOption(&quot;h&quot;)) {</b>
 <b class="nc">&nbsp;                ArgumentHandler.help(options);</b>
-<b class="nc">&nbsp;                return 0;</b>
+<b class="nc">&nbsp;                return 1;</b>
 &nbsp;            } else {
-<b class="fc">&nbsp;                System.out.println(&quot;Wrong syntax! Bye!&quot;);</b>
-<b class="fc">&nbsp;                LOGGER.debug(&quot;Wrong syntax! Bye! Exited!&quot;);</b>
-<b class="fc">&nbsp;                return 0;</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Wrong syntax! Bye!&quot;);</b>
+<b class="nc">&nbsp;                ArgumentHandler.help(options);</b>
+<b class="nc">&nbsp;                LOGGER.debug(&quot;Wrong syntax! Bye! Exited!&quot;);</b>
+<b class="nc">&nbsp;                return 0;</b>
 &nbsp;            }
 &nbsp;        } catch (ParseException e) {
 <b class="fc">&nbsp;            LOGGER.debug(&quot;An error happened: {}&quot;, e.getMessage());</b>
 <b class="fc">&nbsp;            ArgumentHandler.help(options);</b>
-<b class="fc">&nbsp;            return 0;</b>
+<b class="fc">&nbsp;            return 1;</b>
 &nbsp;        }
-<b class="fc">&nbsp;        return 0;</b>
+<b class="nc">&nbsp;        return 0;</b>
 &nbsp;    }
 &nbsp;}
 </code>
@@ -163,7 +170,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-07 01:00</div>
+    <div style="float:right;">generated on 2025-12-08 12:48</div>
 </div>
 </body>
 </html>

@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (12/12)
+    (14/14)
   </span>
 </td>
 </tr>
@@ -92,17 +92,28 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import lombok.Getter;
 &nbsp;
 &nbsp;/**
-&nbsp; * An enum class representing the commands of the robot.
+&nbsp; * &lt;p&gt;An enum class representing the commands of the robot.&lt;/p&gt;
 &nbsp; * As of writing this code, players can execute the following commands: &lt;strong&gt;PLACE, MOVE, LEFT, RIGHT&lt;/strong&gt; and
-&nbsp; * &lt;strong&gt;REPORT&lt;/strong&gt;.
+&nbsp; * &lt;strong&gt;REPORT&lt;/strong&gt;.&lt;/p&gt;
+&nbsp; *
+&nbsp; * @author &lt;a href=&quot;mailto:nvntung@gmail.com&quot;&gt;Tung Nguyen&lt;/a&gt;
 &nbsp; */
 <b class="fc">&nbsp;@Getter</b>
 &nbsp;public enum Command {
+&nbsp;    // Place the robot at the specific position
 <b class="fc">&nbsp;    PLACE(&quot;PLACE&quot;),</b>
+&nbsp;    // Move the robot to the next cell in the redefined direction
 <b class="fc">&nbsp;    MOVE(&quot;MOVE&quot;),</b>
+&nbsp;    // Move the robot to the left side
 <b class="fc">&nbsp;    LEFT(&quot;LEFT&quot;),</b>
+&nbsp;    // Move the robot to the right side
 <b class="fc">&nbsp;    RIGHT(&quot;RIGHT&quot;),</b>
-<b class="fc">&nbsp;    REPORT(&quot;REPORT&quot;);</b>
+&nbsp;    // Print out the current position and direction
+<b class="fc">&nbsp;    REPORT(&quot;REPORT&quot;),</b>
+&nbsp;    // Print out the current info of the game board and robot
+<b class="fc">&nbsp;    ABOUT(&quot;ABOUT&quot;),</b>
+&nbsp;    // Reset the toy robot game to the previous state
+<b class="fc">&nbsp;    RESET(&quot;RESET&quot;);</b>
 &nbsp;
 &nbsp;    private final String description;
 &nbsp;
@@ -148,7 +159,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-07 01:00</div>
+    <div style="float:right;">generated on 2025-12-08 12:48</div>
 </div>
 </body>
 </html>

@@ -95,7 +95,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import java.io.*;
 &nbsp;import java.util.ArrayList;
 &nbsp;
+&nbsp;/**
+&nbsp; * &lt;p&gt;A class for reading the input file and simulating a toy robot.&lt;/p&gt;
+&nbsp; * &lt;p&gt;Scan README.md to see the format of an input file.&lt;/p&gt;
+&nbsp; *
+&nbsp; * @author &lt;a href=&quot;mailto:nvntung@gmail.com&quot;&gt;Tung Nguyen&lt;/a&gt;
+&nbsp; */
 <b class="nc">&nbsp;public class ToyRobotReader {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Simulates a toy robot by parsing a input file including all commands
+&nbsp;     *
+&nbsp;     * @param filePath {@link String} denoting the location of the file
+&nbsp;     * @return {@link ArrayList} of all the statements as considered the output
+&nbsp;     */
 &nbsp;    public static ArrayList&lt;String&gt; simulateToyRobot(final String filePath) {
 <b class="fc">&nbsp;        if (filePath == null) {</b>
 <b class="fc">&nbsp;            throw new InvalidRobotException(&quot;Invalid file path&quot;);</b>
@@ -111,6 +124,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        return result;</b>
 &nbsp;    }
 &nbsp;
+&nbsp;    /**
+&nbsp;     * Reads the given file and executes the commands given in the files. Then, returns a list of all the outputs.
+&nbsp;     *
+&nbsp;     * @param file {@link File} denoting the file including all the commands for the robot
+&nbsp;     * @return {@link ArrayList} list of all the outputs
+&nbsp;     */
 &nbsp;    private static ArrayList&lt;String&gt; readFromFile(final File file) {
 <b class="fc">&nbsp;        if (!file.exists()) {</b>
 <b class="fc">&nbsp;            throw new InvalidRobotException(&quot;Input file does not exist&quot;);</b>
@@ -154,7 +173,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-07 01:00</div>
+    <div style="float:right;">generated on 2025-12-08 12:48</div>
 </div>
 </body>
 </html>

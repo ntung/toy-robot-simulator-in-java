@@ -72,10 +72,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    75%
+    70.6%
   </span>
   <span class="absValue">
-    (12/16)
+    (12/17)
   </span>
 </td>
 </tr>
@@ -89,6 +89,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.cellularorigins.production;
 &nbsp;
+&nbsp;import com.cellularorigins.simulation.GameBoard;
+&nbsp;import com.cellularorigins.simulation.Robot;
 &nbsp;import com.cellularorigins.simulation.Simulator;
 &nbsp;import lombok.Getter;
 &nbsp;import lombok.Setter;
@@ -100,7 +102,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import java.util.Scanner;
 &nbsp;
 &nbsp;/**
+&nbsp; * A class for manufacturing toy robots.
 &nbsp; *
+&nbsp; * @author &lt;a href=&quot;mailto:nvntung@gmail.com&quot;&gt;Tung Nguyen&lt;/a&gt;
 &nbsp; */
 &nbsp;@Getter
 &nbsp;@Setter
@@ -112,7 +116,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    public static void usage() {
 <b class="nc">&nbsp;        System.out.println(&quot;Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; &quot; +</b>
-&nbsp;                &quot;RIGHT; REPORT. Type `quit` or press `Ctrl+C` to exit the game.&quot;);
+&nbsp;                &quot;RIGHT; REPORT; ABOUT. Type `quit` or press `Ctrl+C` to exit the game.&quot;);
 &nbsp;    }
 &nbsp;
 &nbsp;    /**
@@ -167,7 +171,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    public static void createToyRobot() {
 &nbsp;        // Concrete dependencies are instantiated here (The Composition Root)
 <b class="nc">&nbsp;        Simulator simulator = Simulator.createDefaultSimulator();</b>
-&nbsp;
+<b class="nc">&nbsp;        usage();</b>
 &nbsp;        // Delegates the actual work to the testable method
 <b class="nc">&nbsp;        runToyRobot(simulator, System.in, System.out);</b>
 &nbsp;    }
@@ -195,7 +199,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-07 01:00</div>
+    <div style="float:right;">generated on 2025-12-08 12:48</div>
 </div>
 </body>
 </html>
