@@ -38,13 +38,15 @@ public class Main {
                     ToyRobotFactory.createToyRobot();
                 } else {
                     // create a customised toy robot simulator
-                    System.out.println("Unsupported yet!");
+                    System.out.println("Build a custom toy robot simulator from a configuration file " +
+                            "hasn't been supported yet!");
                 }
             } else if (cmd.hasOption("h")) {
                 ArgumentHandler.help(options);
                 return 1;
             } else {
                 System.out.println("Wrong syntax! Bye!");
+                ArgumentHandler.help(options);
                 LOGGER.debug("Wrong syntax! Bye! Exited!");
                 return 0;
             }

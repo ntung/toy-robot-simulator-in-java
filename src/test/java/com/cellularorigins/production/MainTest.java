@@ -12,7 +12,7 @@ public class MainTest {
         int actual = Main.start(new String[]{});
         Assertions.assertEquals(0, actual);
         actual = Main.start(new String[]{""});
-        assertEquals(0, actual);
+        assertEquals(1, actual);
         actual = Main.start(new String[]{"-h"});
         assertEquals(1, actual);
     }
@@ -20,6 +20,6 @@ public class MainTest {
     @Test
     public void testMainClassWithArguments() {
         int result = Main.start(new String[]{ "-f input.txt" });
-        Assertions.assertEquals(0, result);
+        Assertions.assertEquals(1, result);
     }
 }

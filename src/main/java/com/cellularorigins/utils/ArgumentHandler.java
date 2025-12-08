@@ -48,6 +48,7 @@ public class ArgumentHandler {
                 .build();
         optFile.setRequired(false);
         OptionGroup group = new OptionGroup();
+        group.setRequired(true);
         group.addOption(optText);
         group.addOption(optFile);
         options.addOptionGroup(group);
