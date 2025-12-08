@@ -3,6 +3,8 @@
 [![Maven Central Version](https://img.shields.io/maven-central/v/org.projectlombok/lombok)](https://mvnrepository.com/artifact/org.projectlombok/lombok)
 [![Homebrew](https://badgen.net/homebrew/v/fish)](https://brew.sh/)
 [![JUnit5](https://img.shields.io/badge/JUnit5-f5f5f5?style=for-the-badge&logo=junit5&logoColor=dc524a)](https://docs.junit.org/current/user-guide/)
+[![unit](https://github.com/fritx/jayin/actions/workflows/unit-test.yml/badge.svg)](https://github.com/ntung/toy-robot-simulator-in-java/actions/workflows/maven.yml)
+[![cov](https://we-cli.github.io/jayin/badges/coverage.svg)](https://github.com/ntung/toy-robot-simulator-in-java/actions)
 
 This is a command line Java application that simulates a robot on a square tabletop.
 
@@ -189,6 +191,7 @@ created. Two classes for creating Toy Robot locate in `com.cellularorigins.produ
 2. The initial position could be any position.
 3. New commands could be also interesting. 
 4. Support for multiple players: find the optimised route to reach the destination position earliest.
+5. Develop a GUI and add an optional argument in the `main()` method to launch the program in graphic mode. 
 
 ## Licence
 This program is under MIT Licence. Read [LICENCE](LICENCE) for more information.
