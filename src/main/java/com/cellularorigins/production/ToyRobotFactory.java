@@ -11,7 +11,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
+ * A class for manufacturing toy robots.
  *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
 @Getter
 @Setter

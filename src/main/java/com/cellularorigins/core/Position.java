@@ -3,7 +3,9 @@ package com.cellularorigins.core;
 import lombok.*;
 
 /**
- * A class representing the robot position.
+ * <p>A class representing the robot position.</p>
+ *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor

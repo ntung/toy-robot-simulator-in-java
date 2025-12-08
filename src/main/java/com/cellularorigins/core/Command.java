@@ -3,9 +3,11 @@ package com.cellularorigins.core;
 import lombok.Getter;
 
 /**
- * An enum class representing the commands of the robot.
+ * <p>An enum class representing the commands of the robot.</p>
  * As of writing this code, players can execute the following commands: <strong>PLACE, MOVE, LEFT, RIGHT</strong> and
- * <strong>REPORT</strong>.
+ * <strong>REPORT</strong>.</p>
+ *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
 @Getter
 public enum Command {

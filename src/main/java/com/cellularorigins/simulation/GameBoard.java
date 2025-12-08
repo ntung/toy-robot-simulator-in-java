@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * A class representing the game board.
- * <p>
- * The game board is defined several rows and columns. By default, it is a square table.
+ * <p>A class representing the game board.</p>
+ * <p>The game board is defined several rows and columns. By default, it is a square table.</p>
+ *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor

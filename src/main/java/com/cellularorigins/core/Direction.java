@@ -3,7 +3,9 @@ package com.cellularorigins.core;
 import lombok.Getter;
 
 /**
- * An enum class representing four universal directions which a robot can move.
+ * <p>An enum class representing four universal directions which a robot can move.</p>
+ *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
  */
 @Getter
 public enum Direction {

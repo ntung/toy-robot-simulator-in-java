@@ -12,6 +12,11 @@ import lombok.Setter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * A class for creating a Simulator composing a GameBoard and a Robot.
+ *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class Simulator {
@@ -69,6 +74,12 @@ public class Simulator {
         return robot.report();
     }
 
+    /**
+     * Executes the PLACE command including the position coordinates and the direction.
+     *
+     * @param commands {@link String} denoting the position coordinates following by the direction.
+     * @return true if the execution is successful. Otherwise, it returns false.
+     */
     public boolean placeCommand(String commands) {
         int xValue;
         int yValue;
@@ -88,6 +99,12 @@ public class Simulator {
         }
     }
 
+    /**
+     * Executes a given command. The method returns instructions if the command is invalid.
+     *
+     * @param commandLine {@link String} denoting the requested command.
+     * @return {@link String} denoting as the output of the command.
+     */
     public String execute(String commandLine) {
         String[] commandArgs = commandLine.split(" ");
         String output = "";
@@ -142,7 +159,7 @@ public class Simulator {
     /**
      * Creates a single simulator with the default values.
      *
-     * @return {@link Simulator}
+     * @return {@link Simulator} to run the simulation.
      */
     public static Simulator createDefaultSimulator() {
         GameBoard gameBoard = new GameBoard(5, 5);

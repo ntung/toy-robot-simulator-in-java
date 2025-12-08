@@ -7,6 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * A class for representing the Robot.
+ *
+ * @author <a href="mailto:nvntung@gmail.com">Tung Nguyen</a>
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class Robot {
