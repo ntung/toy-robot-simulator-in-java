@@ -113,7 +113,17 @@ Usage: java -jar ToyRobotSimulator-jar-with-dependencies.jar <file of commands>
 
 $ java -jar ToyRobotSimulator.jar -i 
 Welcome to Cellular Origins!
-Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; RIGHT; REPORT. Type `quit` or press `Ctrl+C` to exit the game.
+No config file provided. The toy robot simulator will be created.
+Play robot game now! Commands: PLACE X,Y,[NORTH, EAST, SOUTH, WEST]; MOVE; LEFT; RIGHT; REPORT; ABOUT. Type `quit` or press `Ctrl+C` to exit the game.
+about
+Game Board[5,5] and Robot: 0,0,NORTH
+0,0,NORTH
+about
+Game Board[5,5] and Robot: 0,0,NORTH
+0,0,NORTH
+reset
+Unsupported yet
+0,0,NORTH
 HELLO
 Command is null. Try again with the built-in commands!
 hi

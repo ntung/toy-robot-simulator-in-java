@@ -108,6 +108,10 @@ public class SimulatorTest {
         Assertions.assertTrue(result);
         report = simulator.play(Command.MOVE);
         Assertions.assertEquals("0,0,SOUTH", report);
+        report = simulator.play(Command.ABOUT);
+        Assertions.assertEquals("0,0,SOUTH", report);
+        report = simulator.play(Command.RESET);
+        Assertions.assertEquals("0,0,SOUTH", report);
     }
 
     @Test
@@ -186,5 +190,27 @@ public class SimulatorTest {
         Assertions.assertSame(Direction.NORTH, simulator.getRobot().getPosition().getDirection());
         Assertions.assertEquals(5, simulator.getGameboard().rows());
         Assertions.assertEquals(5, simulator.getGameboard().cols());
+    }
+
+    @Test
+    public void testBuildSimulatorWithInvalidDimensions() {
+        InvalidRobotException thrown = assertThrows(
+                InvalidRobotException.class,
+                () -> Simulator.buildSimulator(-5, 5, 0, 0),
+                "Expected buildSimulator() to throw an exception because the dimensions are invalid"
+        );
+        Assertions.assertTrue(thrown.getMessage().equals("Invalid number of rows or columns"));
+    }
+
+    @Test
+    public void testBuildSimulatorWithInvalidInitialPosition() {
+        Simulator simulator = Simulator.buildSimulator(10, 10, -1, 0);
+        Assertions.assertNull(simulator);
+    }
+
+    @Test
+    public void testBuildSimulatorWithValidInitialPosition() {
+        Simulator simulator = Simulator.buildSimulator(10, 10, 9, 9);
+        Assertions.assertNotNull(simulator);
     }
 }

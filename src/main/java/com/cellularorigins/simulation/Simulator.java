@@ -179,13 +179,37 @@ public class Simulator {
     }
 
     /**
-     * Creates a single simulator with the default values.
+     * <p>Creates a single simulator with the default values, i.e., the 5x5 board at (0,0) NORTH direction.</p>
+     * <p>The origin (0,0) can be considered to be the SOUTH WEST most corner.</p>
      *
      * @return {@link Simulator} to run the simulation.
      */
     public static Simulator createDefaultSimulator() {
         GameBoard gameBoard = new GameBoard(5, 5);
         Position startPosition = new Position(0, 0, Direction.NORTH);
+        Robot robot = new Robot(startPosition);
+        return new Simulator(gameBoard, robot);
+    }
+
+    /**
+     * <p>Builds a robot simulator with any size of the game board and any initial position of the robot towards
+     * NORTH direction.</p>
+     * @param nbRows an {@link Integer} value denoting the number of rows of the game board.
+     * @param nbCols an {@link Integer} value denoting the number of columns of the game board.
+     * @param initialX an {@link Integer} value denoting the X-coord of the initial position (0 <= initialX < nbCols-1).
+     * @param initialY an {@link Integer} value denoting the Y-coord of the initial position (0 <= initialY < nbRows-1).
+     *
+     * @return {@link Simulator} a success simulator. Otherwise, it returns null.
+     */
+    public static Simulator buildSimulator(final int nbRows, final int nbCols, int initialX, final int initialY) {
+        if (nbRows <= 0 || nbCols <= 0) {
+            throw new InvalidRobotException("Invalid number of rows or columns");
+        }
+        GameBoard gameBoard = new GameBoard(nbRows, nbCols);
+        Position startPosition = new Position(initialX, initialY, Direction.NORTH);
+        if (!gameBoard.validatePosition(startPosition)) {
+            return null;
+        }
         Robot robot = new Robot(startPosition);
         return new Simulator(gameBoard, robot);
     }

@@ -1,5 +1,7 @@
 package com.cellularorigins.production;
 
+import com.cellularorigins.simulation.GameBoard;
+import com.cellularorigins.simulation.Robot;
 import com.cellularorigins.simulation.Simulator;
 import lombok.Getter;
 import lombok.Setter;
@@ -80,7 +82,7 @@ public class ToyRobotFactory {
     public static void createToyRobot() {
         // Concrete dependencies are instantiated here (The Composition Root)
         Simulator simulator = Simulator.createDefaultSimulator();
-
+        usage();
         // Delegates the actual work to the testable method
         runToyRobot(simulator, System.in, System.out);
     }
